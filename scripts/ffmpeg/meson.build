@@ -171,6 +171,7 @@ audio_default_options = [
 # https://github.com/media-kit/libmpv-android-video-build/blob/7353af784df9bab3256acd8d90f208024d16ab96/buildscripts/flavors/default.sh
 video_default_options = [
     # decoders
+    '--enable-decoder=dvbsub',
     '--enable-decoder=flv',
     '--enable-decoder=h263',
     '--enable-decoder=h263i',
