@@ -55,6 +55,7 @@ common_options = [
     '--enable-swresample',
     '--enable-swscale',
     '--enable-avfilter',
+    '--enable-libsrt',
 
     # '--enable-gpl', # uncomment it to include GPL code
     # '--enable-nonfree', # uncomment it to include unredistributable code
@@ -101,7 +102,7 @@ audio_default_options = [
     '--enable-decoder=dsd*',
     '--enable-decoder=dca', # required by dts
 
-    # parsers   
+    # parsers
     '--enable-parser=aac*',
     '--enable-parser=ac3',
     '--enable-parser=cook',
@@ -161,7 +162,7 @@ audio_default_options = [
     '--enable-protocol=subfile',
     '--enable-protocol=tcp',
     '--enable-protocol=tls',
-    # '--enable-protocol=srt', # WARNING: Option --enable-protocol=srt did not match anything
+    '--enable-protocol=libsrt',
 
     # filters
     '--enable-filter=overlay',
@@ -171,7 +172,6 @@ audio_default_options = [
 # https://github.com/media-kit/libmpv-android-video-build/blob/7353af784df9bab3256acd8d90f208024d16ab96/buildscripts/flavors/default.sh
 video_default_options = [
     # decoders
-    '--enable-decoder=dvbsub',
     '--enable-decoder=flv',
     '--enable-decoder=h263',
     '--enable-decoder=h263i',
@@ -213,6 +213,7 @@ video_default_options = [
     '--enable-decoder=movtext',
 
     # parsers
+    '--enable-parser=dvbsub',
     '--enable-parser=h263',
     '--enable-parser=h264',
     '--enable-parser=hevc',
