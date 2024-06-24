@@ -1,20 +1,39 @@
 # https://mesonbuild.com/External-Project-module.html
 
-project('libsrt', 'c')
+project('libsrt', 'c', 'cpp')
 
 mod = import('unstable-external_project')
+
+# build binaries
+c = meson.get_compiler('c')
+cpp = meson.get_compiler('cpp')
+pkg_config = find_program('pkg-config')
+
+# build options
+c_args = get_option('c_args')
+cpp_args = get_option('cpp_args')
+message(get_option('prefix').replace('libsrt', 'mbedtls'))
 
 p = mod.add_project('configure',
     configure_options : [
         '--prefix=@PREFIX@',
+        '--target-os=@0@'.format(host_machine.system()),
+        '--arch=@0@'.format(host_machine.cpu_family()),
+        '--cc=@0@'.format(''.join(c.cmd_array())),
+        '--cxx=@0@'.format(''.join(cpp.cmd_array())),
+        '--ld=@0@'.format(''.join(c.cmd_array())),
+        '--pkg-config=@0@'.format(pkg_config.path()),
         '--enable-static=0',
         '--enable-shared=1',
         '--enable-apps=0',
         '--use-enclib=mbedtls',
         '--disable-test',
+        '--MBEDTLS_PREFIX=' + get_option('prefix').replace('libsrt', 'mbedtls'),
     ],
     verbose: true,
 )
 
 libsrt_dep = p.dependency('libsrt')
+mbedtls_dep = p.dependency('mbedtls')
+meson.override_dependency('mbedtls', mbedtls_dep)
 meson.override_dependency('libsrt', libsrt_dep)
