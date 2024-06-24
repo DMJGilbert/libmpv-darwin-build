@@ -8,8 +8,8 @@ p = mod.add_project('configure',
     configure_options : [
         '--prefix=@PREFIX@',
         '--disable-static',
-        '--use-enclib=mbedtls',
         '--enable-shared',
+        '--use-enclib=mbedtls',
     ],
     verbose: true,
 )
