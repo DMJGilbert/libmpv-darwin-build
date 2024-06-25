@@ -103,13 +103,13 @@ jobs:
           path: |
             build/output/*.tar.gz
 
-      # - name: Release
-      #   uses: softprops/action-gh-release@v1
-      #   with:
-      #     fail_on_unmatched_files: true
-      #     tag_name: ${{ steps.version.outputs.version }}
-      #     draft: false
-      #     prerelease: true
-      #     files: |
-      #       build/output/debug.zip
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          fail_on_unmatched_files: true
+          tag_name: ${{ steps.version.outputs.version }}
+          draft: false
+          prerelease: true
+          files: |
+            build/output/*.tar.gz
 
