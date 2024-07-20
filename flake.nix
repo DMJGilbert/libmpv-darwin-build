@@ -27,7 +27,6 @@
           meson
           ninja
           nasm
-          pkg-config
         ];
       };
     });
