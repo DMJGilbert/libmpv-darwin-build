@@ -12,8 +12,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Install requirements
-        run: brew install go meson ninja nasm
+      - uses: nicknovitski/nix-develop@1
 
       - name: Print tool versions
         run: make tool-versions
