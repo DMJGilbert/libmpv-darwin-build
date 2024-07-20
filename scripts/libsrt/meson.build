@@ -31,7 +31,7 @@ options = [
     '--MBEDTLS_PREFIX=' + get_option('prefix').replace('libsrt', 'mbedtls'),
 ]
 
-if target_machine.subsystem() == 'ios'
+if meson.get_cross_property('subsystem') == 'ios'
     options += [
       '--cmake-prefix-path=@PREFIX@',
       '--cmake-ios-sdk-root=' + meson.get_cross_property('cmake_osx_sysroot'),
