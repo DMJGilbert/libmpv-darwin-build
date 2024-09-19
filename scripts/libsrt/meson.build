@@ -12,8 +12,7 @@ pkg_config = find_program('pkg-config')
 # build options
 c_args = get_option('c_args')
 cpp_args = get_option('cpp_args')
-message(get_option('prefix').replace('libsrt', 'mbedtls'))
-
+mbedtls = get_option('prefix').replace('libsrt', 'mbedtls')
 
 options = [
     '--prefix=@PREFIX@',
@@ -28,14 +27,16 @@ options = [
     '--enable-apps=0',
     '--use-enclib=mbedtls',
     '--disable-test',
-    '--MBEDTLS_PREFIX=' + get_option('prefix').replace('libsrt', 'mbedtls'),
+    '--MBEDTLS_PREFIX=' + mbedtls,
 ]
 
 if meson.get_cross_property('subsystem') == 'ios'
     options += [
       '--cmake-prefix-path=@PREFIX@',
+      '--cmake-toolchain-file=scripts/iOS.cmake',
       '--cmake-ios-sdk-root=' + meson.get_cross_property('cmake_osx_sysroot'),
-      '--cmake-toolchain-file=scripts/iOS.cmake'
+      '--MBEDTLS_LIBRARIES='+ mbedtls+ '/lib/',
+      '--MBEDTLS_INCLUDE_DIRS=' + mbedtls + '/include/',
     ]
 endif
 
