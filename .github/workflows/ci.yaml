@@ -67,7 +67,6 @@ jobs:
       - name: Build iOS
         run: |
           VERSION=${{ steps.version.outputs.version }}
-          ls /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs
           make build/output/libmpv-libs_${VERSION}_ios-arm64-audio-default.tar.gz
           make build/output/libmpv-libs_${VERSION}_ios-arm64-audio-full.tar.gz
           # make build/output/libmpv-libs_${VERSION}_ios-arm64-audio-encodersgpl.tar.gz
