@@ -33,8 +33,6 @@ options = [
 if meson.get_cross_property('subsystem') == 'ios'
     options += [
       '--cmake-prefix-path=@PREFIX@',
-      '--cmake-toolchain-file=scripts/iOS.cmake',
-      '--cmake-ios-sdk-root=' + '/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDK',
       '--CMAKE_IOS_SDK_ROOT=' + '/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDK',
       '--MBEDTLS_LIBRARIES='+ mbedtls+ '/lib/',
       '--MBEDTLS_INCLUDE_DIRS=' + mbedtls + '/include/',
