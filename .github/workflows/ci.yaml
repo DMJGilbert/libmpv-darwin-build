@@ -37,8 +37,8 @@ jobs:
         # macOS runners have unknown resource limits (timeout or number of open
         # files…) that prevent the execution of a single Makefile rule that
         # manages all builds. So the time per rule must be limited.
-        # run: |
-        #   VERSION=${{ steps.version.outputs.version }}
+        run: |
+          VERSION=${{ steps.version.outputs.version }}
         #   make build/output/libmpv-libs_${VERSION}_macos-amd64-audio-default.tar.gz
         #   make build/output/libmpv-libs_${VERSION}_macos-amd64-audio-full.tar.gz
         #   # make build/output/libmpv-libs_${VERSION}_macos-amd64-audio-encodersgpl.tar.gz
