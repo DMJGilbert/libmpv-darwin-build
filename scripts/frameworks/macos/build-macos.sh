@@ -67,7 +67,7 @@ find ${DEPS} -name "*.dylib" -type f | while read DYLIB; do
         tail -n +2 |
         grep "@rpath" |
         while read DEP; do
-            DEP_NAME=$(basename $DEP .dylib | sed 's/\.[0-9]*$//' | sed 's/^lib//')
+            DEP_NAME=$(basename $DEP .dylib | sed 's/\.[0-9]*$//' | sed 's/\.[0-9]*$//' | sed 's/^lib//')
             DEP_NAME="$(tr '[:lower:]' '[:upper:]' <<<${DEP_NAME:0:1})${DEP_NAME:1}"
 
             NEW_DEP="@rpath/${DEP_NAME}.framework/Versions/A/${DEP_NAME}"
