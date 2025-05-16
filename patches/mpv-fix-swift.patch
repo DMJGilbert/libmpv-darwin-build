@@ -1,0 +1,31 @@
+From 2fb8b00ac9580109447d1e946f5093833ac38c2e Mon Sep 17 00:00:00 2001
+From: der richter <der.richter@gmx.de>
+Date: Sat, 5 Oct 2024 16:19:48 +0200
+Subject: [PATCH] mac/app: fix building with swift disabled
+
+Fixes #14931
+---
+ osdep/mac/app_bridge.m | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/osdep/mac/app_bridge.m b/osdep/mac/app_bridge.m
+index bea1ecae3e..ead9603c9d 100644
+--- a/osdep/mac/app_bridge.m
++++ b/osdep/mac/app_bridge.m
+@@ -110,6 +110,7 @@ const struct m_sub_options *app_bridge_vo_conf(void)
+     return &vo_sub_opts;
+ }
+ 
++#if HAVE_SWIFT
+ void cocoa_init_media_keys(void)
+ {
+     [[AppHub shared] startRemote];
+@@ -139,4 +140,4 @@ int cocoa_main(int argc, char *argv[])
+ {
+     return [(Application *)[Application sharedApplication] main:argc :argv];
+ }
+-
++#endif
+-- 
+2.49.0
+
