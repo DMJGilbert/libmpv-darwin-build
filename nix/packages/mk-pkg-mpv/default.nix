@@ -176,6 +176,7 @@ in
         -Dmacos-10-15-4-features=disabled
         -Dmacos-11-features=disabled
         -Dmacos-11-3-features=disabled
+        -Dmacos-12-features=disabled
         -Dmacos-cocoa-cb=disabled `# macOS libmpv backend`
         -Dmacos-media-player=disabled `# macOS Media Player support`
         -Dmacos-touchbar=disabled `# macOS Touch Bar support`
