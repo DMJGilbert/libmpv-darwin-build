@@ -115,6 +115,7 @@ in
         -Dalsa=disabled `# ALSA audio output`
         -Daudiounit=disabled `# AudioUnit output for iOS`
         -Dcoreaudio=disabled `# CoreAudio audio output`
+        -Davfoundation=disabled
         -Djack=disabled `# JACK audio output`
         -Dopenal=disabled `# OpenAL audio output`
         -Dopensles=disabled `# OpenSL ES audio output`
