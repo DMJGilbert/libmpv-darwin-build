@@ -5,9 +5,9 @@
     sha256 = "a4003623cdc0109dec3aac8435520aa3fb12c4d69454fa227f2658cdb6dab5fa";
   };
   ffmpeg = {
-    version = "6.0";
-    url = "https://ffmpeg.org/releases/ffmpeg-6.0.tar.xz";
-    sha256 = "57be87c22d9b49c112b6d24bc67d42508660e6b718b3db89c44e47e289137082";
+    version = "6.1.1";
+    url = "https://ffmpeg.org/releases/ffmpeg-6.1.1.tar.xz";
+    sha256 = "0s7r2qv8gh2a3w568n9xxgcz0q8j5ww1jdsci1hm9f4l1yqg9146";
   };
   fftools-ffi = {
     version = "106d5813";
@@ -40,9 +40,9 @@
     sha256 = "0eb4b4b9420a0f51db142ba3f9c64b333f826532dc0f48c6410ae51f4799b664";
   };
   libpng = {
-    version = "1.6.40";
-    url = "https://github.com/pnggroup/libpng/archive/v1.6.40.tar.gz";
-    sha256 = "62d25af25e636454b005c93cae51ddcd5383c40fa14aa3dae8f6576feb5692c2";
+    version = "1.6.48";
+    url = "https://github.com/pnggroup/libpng/archive/v1.6.48.tar.gz";
+    sha256 = "1l0x7wj44npdvpmdm1ppx64gg6kzk8x0q5lrpa67wwjmc019jzmi";
   };
   libpngPatch = {
     version = "1.6.40-1";
@@ -75,9 +75,9 @@
     sha256 = "a420fcf7103e54e775c383e3751729b8fb2dcd087f6165befd13f28315f754f5";
   };
   mpv = {
-    version = "0.36.0";
-    url = "https://github.com/mpv-player/mpv/archive/refs/tags/v0.36.0.tar.gz";
-    sha256 = "29abc44f8ebee013bb2f9fe14d80b30db19b534c679056e4851ceadf5a5e8bf6";
+    version = "0.39.0";
+    url = "https://github.com/mpv-player/mpv/archive/refs/tags/v0.39.0.tar.gz";
+    sha256 = "10s6ans3mslm5sjyh005b4ix0w2wg2j9whdlb6sw4qpvmwvj9a9c";
   };
   uchardet = {
     version = "0.0.8";

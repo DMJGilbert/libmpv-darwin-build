@@ -1,7 +1,6 @@
 let
   variants = import ../constants/variants.nix;
-in
-[
-  variants.audio
+in [
+  # variants.audio
   variants.video
 ]

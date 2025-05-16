@@ -1,8 +1,7 @@
 let
   flavors = import ../constants/flavors.nix;
-in
-[
+in [
   flavors.default
-  flavors.full
-  flavors.encodersgpl
+  # flavors.full
+  # flavors.encodersgpl
 ]
