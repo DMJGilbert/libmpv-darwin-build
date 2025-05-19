@@ -111,6 +111,7 @@ in
         -Dvector=disabled `# GCC vector instructions`
         -Dzimg=disabled `# libzimg support (high quality software scaler)`
         -Dzlib=disabled `# zlib`
+        -Dwin32-threads=disabled
 
         `# audio output features`
         -Dalsa=disabled `# ALSA audio output`
@@ -159,10 +160,12 @@ in
         -Dvaapi-drm=disabled `# VAAPI (DRM/EGL support)`
         -Dvaapi-wayland=disabled `# VAAPI (Wayland support)`
         -Dvaapi-x11=disabled `# VAAPI (X11 support)`
+        -Dvaapi-win32=disabled
         -Dvulkan=disabled `# Vulkan context support`
         -Dwayland=disabled `# Wayland`
         -Dx11=disabled `# X11`
         -Dxv=disabled `# Xv video output`
+        -Davfoundation=disabled
 
         `# hwaccel features`
         -Dandroid-media-ndk=disabled `# Android Media APIs`
@@ -173,6 +176,7 @@ in
         -Dgl-dxinterop-d3d9=disabled `# OpenGL/DirectX Interop Backend DXVA2 interop`
         -Dios-gl=disabled `# iOS OpenGL ES hardware decoding interop support`
         -Dvideotoolbox-gl=disabled `# Videotoolbox with OpenGL`
+        -Dvideotoolbox-pl=disabled
 
         `# macOS features`
         -Dmacos-10-15-4-features=disabled
