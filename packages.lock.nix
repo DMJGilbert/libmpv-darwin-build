@@ -40,9 +40,9 @@
     sha256 = "0eb4b4b9420a0f51db142ba3f9c64b333f826532dc0f48c6410ae51f4799b664";
   };
   libpng = {
-    version = "1.6.40";
-    url = "https://github.com/pnggroup/libpng/archive/v1.6.40.tar.gz";
-    sha256 = "62d25af25e636454b005c93cae51ddcd5383c40fa14aa3dae8f6576feb5692c2";
+    version = "1.6.48";
+    url = "https://github.com/pnggroup/libpng/archive/v1.6.48.tar.gz";
+    sha256 = "1l0x7wj44npdvpmdm1ppx64gg6kzk8x0q5lrpa67wwjmc019jzmi";
   };
   libpngPatch = {
     version = "1.6.40-1";
