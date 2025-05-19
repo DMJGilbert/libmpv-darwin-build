@@ -46,8 +46,9 @@
 
     cd $src
     patch -p1 <${../../../patches/mpv-fix-missing-objc.patch}
-    patch -p1 <${../../../patches/mpv-mix-with-others.patch}
-    patch -p1 <${../../../patches/mpv-fix-swift.patch}
+    # patch -p1 <${../../../patches/mpv-mix-with-others.patch}
+    # patch -p1 <${../../../patches/mpv-fix-swift.patch}
+    patch -p1 <${../../../patches/mpv-fix-clipboard-swift.patch}
     if [ "${variant}" == "${variants.audio}" ]; then
       patch -p1 <${../../../patches/mpv-remove-libass.patch}
     fi
@@ -86,7 +87,7 @@ in
         -Dlibmpv=false `# libmpv library`
         -Dbuild-date=false `# whether to include binary compile time`
         -Dtests=false `# unit tests (development only)`
-        -Dta-leak-report=false `# enable ta leak report by default (development only)`
+        # -Dta-leak-report=false `# enable ta leak report by default (development only)`
 
         `# misc features`
         -Dcdda=disabled `# cdda support (libcdio)`

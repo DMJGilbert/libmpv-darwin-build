@@ -75,9 +75,9 @@
     sha256 = "a420fcf7103e54e775c383e3751729b8fb2dcd087f6165befd13f28315f754f5";
   };
   mpv = {
-    version = "0.39.0";
-    url = "https://github.com/mpv-player/mpv/archive/refs/tags/v0.39.0.tar.gz";
-    sha256 = "10s6ans3mslm5sjyh005b4ix0w2wg2j9whdlb6sw4qpvmwvj9a9c";
+    version = "0.40.0";
+    url = "https://github.com/mpv-player/mpv/archive/refs/tags/v0.40.0.tar.gz";
+    sha256 = "18w1y2162acw97f66s2mjzkgdp6vpgqdr06ksinhl5329xjz980h";
   };
   uchardet = {
     version = "0.0.8";

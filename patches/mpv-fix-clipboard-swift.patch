@@ -1,0 +1,27 @@
+diff --git a/meson.build b/meson.build
+index 7572769e0e..f2b7f5d4bd 100644
+--- a/meson.build
++++ b/meson.build
+@@ -413,8 +413,7 @@ if features['cocoa']
+     sources += files('osdep/language-mac.c',
+                      'osdep/path-mac.m',
+                      'osdep/utils-mac.c',
+-                     'osdep/mac/app_bridge.m',
+-                     'player/clipboard/clipboard-mac.m')
++                     'osdep/mac/app_bridge.m')
+     main_fn_source = files('osdep/main-fn-mac.c')
+ endif
+ 
+diff --git a/player/clipboard/clipboard.c b/player/clipboard/clipboard.c
+index c9456ad7fb..0dd0442546 100644
+--- a/player/clipboard/clipboard.c
++++ b/player/clipboard/clipboard.c
+@@ -37,7 +37,7 @@ static const struct clipboard_backend *const clipboard_backend_list[] = {
+ #if HAVE_WIN32_DESKTOP
+     &clipboard_backend_win32,
+ #endif
+-#if HAVE_COCOA
++#if HAVE_COCOA && HAVE_SWIFT
+     &clipboard_backend_mac,
+ #endif
+ #if HAVE_WAYLAND_PROTOCOLS_1_39
