@@ -1,0 +1,109 @@
+From 8dbbc2ad82d6ebfa986db4726e2e5006b7cb0a9d Mon Sep 17 00:00:00 2001
+From: Dudemanguy <random342@airmail.cc>
+Date: Sun, 21 Jan 2024 20:37:47 -0600
+Subject: [PATCH] player: add an auto option to deinterlace
+
+Deinterlacing required that the user set it on/off themselves, but we
+actually have handy flags for detecting if a frame is interlaced. So
+it's pretty simple to make an auto option using that. Unfortunately,
+life is not quite that simple and there are known cases of false
+positives from the ffmpeg flags so we can't make auto the default value.
+However, it still may have some utility for some people, and the
+detection could potentially be improved upon later. Closes #10358.
+---
+ etc/input.conf             |  2 +-
+ filters/f_auto_filters.c   | 17 ++++++++++-------
+ options/options.c          |  3 ++-
+ options/options.h          |  2 +-
+ 7 files changed, 25 insertions(+), 21 deletions(-)
+
+diff --git a/etc/input.conf b/etc/input.conf
+index 0b0e6da015..cfb97fc7d8 100644
+--- a/etc/input.conf
++++ b/etc/input.conf
+@@ -118,7 +118,7 @@
+ #Alt+0 set current-window-scale 0.5     # halve the window size
+ #Alt+1 set current-window-scale 1.0     # reset the window size
+ #Alt+2 set current-window-scale 2.0     # double the window size
+-#d cycle deinterlace                    # toggle the deinterlacing filter
++#d cycle deinterlace                    # cycle the deinterlacing filter
+ #r add sub-pos -1                       # move subtitles up
+ #R add sub-pos +1                       # move subtitles down
+ #t add sub-pos +1                       # move subtitles down
+diff --git a/filters/f_auto_filters.c b/filters/f_auto_filters.c
+index 3cf85d2f32..fca8894b1a 100644
+--- a/filters/f_auto_filters.c
++++ b/filters/f_auto_filters.c
+@@ -21,7 +21,7 @@
+ struct deint_priv {
+     struct mp_subfilter sub;
+     int prev_imgfmt;
+-    int prev_setting;
++    bool deinterlace_active;
+     struct m_config_cache *opts;
+ };
+
+@@ -45,15 +45,18 @@ static void deint_process(struct mp_filter *f)
+         return;
+     }
+
++    struct mp_image *img = frame.data;
++    bool interlaced = img->fields & MP_IMGFIELD_INTERLACED;
++
+     m_config_cache_update(p->opts);
+     struct filter_opts *opts = p->opts->opts;
++    bool should_deinterlace = (opts->deinterlace == -1 && interlaced) ||
++                               opts->deinterlace == 1;
+
+-    if (!opts->deinterlace)
++    if (!should_deinterlace)
+         mp_subfilter_destroy(&p->sub);
+
+-    struct mp_image *img = frame.data;
+-
+-    if (img->imgfmt == p->prev_imgfmt && p->prev_setting == opts->deinterlace) {
++    if (img->imgfmt == p->prev_imgfmt && p->deinterlace_active == should_deinterlace) {
+         mp_subfilter_continue(&p->sub);
+         return;
+     }
+@@ -64,8 +67,8 @@ static void deint_process(struct mp_filter *f)
+     assert(!p->sub.filter);
+
+     p->prev_imgfmt = img->imgfmt;
+-    p->prev_setting = opts->deinterlace;
+-    if (!p->prev_setting) {
++    p->deinterlace_active = should_deinterlace;
++    if (!p->deinterlace_active) {
+         mp_subfilter_continue(&p->sub);
+         return;
+     }
+diff --git a/options/options.c b/options/options.c
+index c103f80103..b25b4ac72c 100644
+--- a/options/options.c
++++ b/options/options.c
+@@ -436,7 +436,8 @@ const struct m_sub_options dvd_conf = {
+
+ const struct m_sub_options filter_conf = {
+     .opts = (const struct m_option[]){
+-        {"deinterlace", OPT_BOOL(deinterlace)},
++        {"deinterlace", OPT_CHOICE(deinterlace,
++            {"no", 0}, {"yes", 1}, {"auto", -1})},
+         {0}
+     },
+     .size = sizeof(OPT_BASE_STRUCT),
+diff --git a/options/options.h b/options/options.h
+index 6caabbfe75..e05b723a01 100644
+--- a/options/options.h
++++ b/options/options.h
+@@ -397,7 +397,7 @@ struct dvd_opts {
+ };
+
+ struct filter_opts {
+-    bool deinterlace;
++    int deinterlace;
+ };
+
+ extern const struct m_sub_options vo_sub_opts;
+--
+2.49.0
+
