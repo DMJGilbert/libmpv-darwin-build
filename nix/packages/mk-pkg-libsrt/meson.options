@@ -1,2 +1,0 @@
-option('targetos', type : 'combo', choices : ['ios', 'macos'])
-

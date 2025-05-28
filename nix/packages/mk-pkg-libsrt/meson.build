@@ -28,16 +28,8 @@ options = [
     '--use-enclib=mbedtls',
     '--disable-test',
     '--MBEDTLS_PREFIX=' + mbedtls,
+    '--cmake-osx-sysroot=@0@'.format(meson.get_cross_property('cmake_osx_sysroot')),
 ]
-
-if get_option('targetos') == 'ios'
-    options += [
-      '--cmake-prefix-path=@PREFIX@',
-      '--CMAKE_IOS_SDK_ROOT=' + meson.get_cross_property('cmake_osx_sysroot'),
-      '--MBEDTLS_LIBRARIES='+ mbedtls+ '/lib/',
-      '--MBEDTLS_INCLUDE_DIRS=' + mbedtls + '/include/',
-    ]
-endif
 
 p = mod.add_project('configure',
     configure_options: options,

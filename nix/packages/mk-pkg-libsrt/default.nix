@@ -11,6 +11,7 @@
   callPackage = pkgs.lib.callPackageWith {inherit pkgs os arch;};
   nativeFile = callPackage ../../utils/native-file/default.nix {};
   crossFile = callPackage ../../utils/cross-file/default.nix {};
+  xctoolchainInstallNameTool = callPackage ../../utils/xctoolchain/install-name-tool.nix {};
 
   mbedtls = callPackage ../mk-pkg-mbedtls/default.nix {};
 
@@ -29,7 +30,6 @@
     cd -
 
     cp ${./meson.build} $src/meson.build
-    cp ${./meson.options} $src/meson.options
 
     cp -r $src $out
   '';
@@ -46,24 +46,16 @@ in
       pkgs.meson
       pkgs.ninja
       pkgs.pkg-config
+      xctoolchainInstallNameTool
     ];
     buildInputs = [
       mbedtls
     ];
     configurePhase = ''
-      if [ "${os}" == "${oses.macos}" ]; then
-        meson setup build $src \
-          --native-file ${nativeFile} \
-          --cross-file ${crossFile} \
-          -Dtargetos=macos \
-          --prefix=$out
-      else
-        meson setup build $src \
-          --native-file ${nativeFile} \
-          --cross-file ${crossFile} \
-          -Dtargetos=ios \
-          --prefix=$out
-      fi
+      meson setup build $src \
+        --native-file ${nativeFile} \
+        --cross-file ${crossFile} \
+        --prefix=$out
     '';
     buildPhase = ''
       meson compile -vC build $(basename $src)
