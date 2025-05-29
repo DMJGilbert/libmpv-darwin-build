@@ -55,6 +55,7 @@ common_options = [
     '--enable-swresample',
     '--enable-swscale',
     '--enable-avfilter',
+    '--enable-libsrt',
 
     # '--enable-gpl', # uncomment it to include GPL code
     # '--enable-nonfree', # uncomment it to include unredistributable code
@@ -161,7 +162,7 @@ audio_default_options = [
     '--enable-protocol=subfile',
     '--enable-protocol=tcp',
     '--enable-protocol=tls',
-    # '--enable-protocol=srt', # WARNING: Option --enable-protocol=srt did not match anything
+    '--enable-protocol=libsrt', # WARNING: Option --enable-protocol=srt did not match anything
 
     # filters
     '--enable-filter=overlay',

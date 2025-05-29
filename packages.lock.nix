@@ -34,6 +34,11 @@
     url = "https://github.com/libass/libass/releases/download/0.17.1/libass-0.17.1.tar.xz";
     sha256 = "f0da0bbfba476c16ae3e1cfd862256d30915911f7abaa1b16ce62ee653192784";
   };
+  libsrt = {
+    version = "1.5.4";
+    url = "https://github.com/Haivision/srt/archive/refs/tags/v1.5.4.tar.gz";
+    sha256 = "1p8cchiv3m5mbr5ay5jz0gj8qnzir37y6c3m4zvalkhvzq0bda6h";
+  };
   libogg = {
     version = "1.3.5";
     url = "https://github.com/xiph/ogg/releases/download/v1.3.5/libogg-1.3.5.tar.gz";
