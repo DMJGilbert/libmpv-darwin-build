@@ -31,6 +31,7 @@
     cp ${./meson.build} $src/meson.build
 
     cp -r $src $out
+    chmod -R 777 $out
   '';
 in
   pkgs.stdenvNoCC.mkDerivation {
