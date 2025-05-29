@@ -26,12 +26,12 @@
 
     cd $src
     patch -p1 --verbose --ignore-whitespace <${../../../patches/libsrt-remove-brew-dep.patch}
+    sed -i "s|/usr/bin/tclsh|/usr/bin/env tclsh|g" "$src/configure"
     cd -
 
     cp ${./meson.build} $src/meson.build
 
     cp -r $src $out
-    chmod -R 777 $out
   '';
 in
   pkgs.stdenvNoCC.mkDerivation {
@@ -46,6 +46,7 @@ in
       pkgs.meson
       pkgs.ninja
       pkgs.pkg-config
+      pkgs.tcl
       xctoolchainInstallNameTool
     ];
     buildInputs = [
