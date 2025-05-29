@@ -6,7 +6,6 @@
   name = "libsrt";
   packageLock = (import ../../../packages.lock.nix).${name};
   inherit (packageLock) version;
-  oses = import ../../utils/constants/oses.nix;
 
   callPackage = pkgs.lib.callPackageWith {inherit pkgs os arch;};
   nativeFile = callPackage ../../utils/native-file/default.nix {};
@@ -23,7 +22,7 @@
   patchedSource = pkgs.runCommand "${pname}-patched-source-${version}" {} ''
     cp -r ${src} src
     export src=$PWD/src
-    chmod -R a+rwx $src
+    chmod -R 777 $src
 
     cd $src
     patch -p1 --verbose --ignore-whitespace <${../../../patches/libsrt-remove-brew-dep.patch}
