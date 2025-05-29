@@ -26,7 +26,7 @@
 
     cd $src
     patch -p1 --verbose --ignore-whitespace <${../../../patches/libsrt-remove-brew-dep.patch}
-    sed -i "s|/usr/bin/tclsh|/usr/bin/env tclsh|g" "$src/configure"
+    sed -i "s|/usr/bin/tclsh|${pkgs.tcl}/bin/tclsh|g" "$src/configure"
     cd -
 
     cp ${./meson.build} $src/meson.build
