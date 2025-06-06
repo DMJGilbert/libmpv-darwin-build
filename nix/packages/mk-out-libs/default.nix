@@ -50,11 +50,13 @@ if arch != archs.universal then
     libpng = callPackage ../mk-pkg-libpng/default.nix { };
     libvpx = callPackage ../mk-pkg-libvpx/default.nix { };
     libx264 = callPackage ../mk-pkg-libx264/default.nix { };
+    libsrt = callPackage ../mk-pkg-libsrt/default.nix {};
 
     deps =
       [
         mpv
         ffmpeg
+        libsrt
         mbedtls
       ]
       ++ pkgs.lib.optionals (flavor == flavors.encodersgpl) [
