@@ -102,7 +102,7 @@ audio_default_options = [
     '--enable-decoder=dsd*',
     '--enable-decoder=dca', # required by dts
 
-    # parsers   
+    # parsers
     '--enable-parser=aac*',
     '--enable-parser=ac3',
     '--enable-parser=cook',
@@ -282,6 +282,8 @@ audio_full_options = [
 
 video_full_options = [
     '--enable-decoder=h264',
+    '--enable-filter=yadif',
+    '--enable-filter=bwdif',
 ]
 
 audio_encodersgpl_options = [
