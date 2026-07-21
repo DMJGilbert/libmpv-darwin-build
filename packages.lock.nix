@@ -35,9 +35,9 @@
     sha256 = "f0da0bbfba476c16ae3e1cfd862256d30915911f7abaa1b16ce62ee653192784";
   };
   libsrt = {
-    version = "1.5.4";
-    url = "https://github.com/Haivision/srt/archive/refs/tags/v1.5.4.tar.gz";
-    sha256 = "1p8cchiv3m5mbr5ay5jz0gj8qnzir37y6c3m4zvalkhvzq0bda6h";
+    version = "1.5.6";
+    url = "https://github.com/Haivision/srt/archive/refs/tags/v1.5.6.tar.gz";
+    sha256 = "1iv9jmv90wpxcbzpz5pmi9icdf8xqnfr77c23g945lfgqk180j9c";
   };
   libogg = {
     version = "1.3.5";
